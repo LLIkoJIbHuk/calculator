@@ -415,6 +415,7 @@ namespace calculator {
 			operators = NumbersOperators->Text;
 		}
 
+		//действие при нажатии на кнопку точка
 		private: System::Void btnDecimal_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			if (!txtDisplay->Text->Contains (".")) {
@@ -423,8 +424,25 @@ namespace calculator {
 
 		}
 
+		//действие при нажатии на кнопку равно
 		private: System::Void btnEquals_Click(System::Object^ sender, System::EventArgs^ e) {
 		
+			secondDigit = Double::Parse(txtDisplay->Text);
+
+			if (operators == "+") {
+				result = firstDegit + secondDigit;
+				txtDisplay->Text = System::Convert::ToString(result);
+			} else if (operators == "-") {
+				result = firstDegit - secondDigit;
+				txtDisplay->Text = System::Convert::ToString(result);
+			} else if (operators == "/") {
+				result = firstDegit / secondDigit;
+				txtDisplay->Text = System::Convert::ToString(result);
+			} else if (operators == "*") {
+				result = firstDegit * secondDigit;
+				txtDisplay->Text = System::Convert::ToString(result);
+			}
+
 		}
 };
 }
