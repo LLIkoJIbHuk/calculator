@@ -40,11 +40,12 @@ namespace calculator {
 	private: System::Windows::Forms::TextBox^ txtDisplay;
 	private: System::Windows::Forms::Button^ btnClear;
 	private: System::Windows::Forms::Button^ btnClearEntry;
+	private: System::Windows::Forms::Button^ btnPlusMinus;
 	protected:
 
 
 
-	private: System::Windows::Forms::Button^ button4;
+
 	private: System::Windows::Forms::Button^ btnDigit7;
 	private: System::Windows::Forms::Button^ btnDigit8;
 	private: System::Windows::Forms::Button^ btnDigit9;
@@ -90,7 +91,7 @@ namespace calculator {
 			this->txtDisplay = (gcnew System::Windows::Forms::TextBox());
 			this->btnClear = (gcnew System::Windows::Forms::Button());
 			this->btnClearEntry = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->btnPlusMinus = (gcnew System::Windows::Forms::Button());
 			this->btnDigit7 = (gcnew System::Windows::Forms::Button());
 			this->btnDigit8 = (gcnew System::Windows::Forms::Button());
 			this->btnDigit9 = (gcnew System::Windows::Forms::Button());
@@ -156,16 +157,17 @@ namespace calculator {
 			this->btnClearEntry->UseVisualStyleBackColor = true;
 			this->btnClearEntry->Click += gcnew System::EventHandler(this, &MainForm::btnClearEntry_Click);
 			// 
-			// button4
+			// btnPlusMinus
 			// 
-			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnPlusMinus->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button4->Location = System::Drawing::Point(270, 83);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(80, 80);
-			this->button4->TabIndex = 0;
-			this->button4->Text = L"±";
-			this->button4->UseVisualStyleBackColor = true;
+			this->btnPlusMinus->Location = System::Drawing::Point(270, 83);
+			this->btnPlusMinus->Name = L"btnPlusMinus";
+			this->btnPlusMinus->Size = System::Drawing::Size(80, 80);
+			this->btnPlusMinus->TabIndex = 0;
+			this->btnPlusMinus->Text = L"±";
+			this->btnPlusMinus->UseVisualStyleBackColor = true;
+			this->btnPlusMinus->Click += gcnew System::EventHandler(this, &MainForm::btnPlusMinus_Click);
 			// 
 			// btnDigit7
 			// 
@@ -369,7 +371,7 @@ namespace calculator {
 			this->Controls->Add(this->button16);
 			this->Controls->Add(this->button12);
 			this->Controls->Add(this->button8);
-			this->Controls->Add(this->button4);
+			this->Controls->Add(this->btnPlusMinus);
 			this->Controls->Add(this->btnEquals);
 			this->Controls->Add(this->btnDigit3);
 			this->Controls->Add(this->btnDigit6);
@@ -457,6 +459,15 @@ namespace calculator {
 		//действие при нажатии на кнопку ClearEntry
 		private: System::Void btnClearEntry_Click(System::Object^ sender, System::EventArgs^ e) {
 			txtDisplay->Text = "0";
+		}
+
+		//действие при нажатии на кнопку смены знака
+		private: System::Void btnPlusMinus_Click(System::Object^ sender, System::EventArgs^ e) {
+			if (txtDisplay->Text->Contains("-")) {
+				txtDisplay->Text = txtDisplay->Text->Remove(0, 1);
+			} else {
+				txtDisplay->Text = "-" + txtDisplay->Text;
+			}
 		}
 };
 }
