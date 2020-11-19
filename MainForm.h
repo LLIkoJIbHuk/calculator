@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include <math.h>
+
 namespace calculator {
 
 	using namespace System;
@@ -390,6 +392,7 @@ namespace calculator {
 			this->btnSquareRoot->TabIndex = 3;
 			this->btnSquareRoot->Text = L"√";
 			this->btnSquareRoot->UseVisualStyleBackColor = true;
+			this->btnSquareRoot->Click += gcnew System::EventHandler(this, &MainForm::btnSquareRoot_Click);
 			// 
 			// MainForm
 			// 
@@ -540,6 +543,17 @@ namespace calculator {
 
 			result = firstDigit * firstDigit;
 			txtDisplay->Text = System::Convert::ToString(result);
+
+		}
+
+		//извлечение корня
+		private: System::Void btnSquareRoot_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+			firstDigit = Double::Parse(txtDisplay->Text);
+
+			result = sqrt(firstDigit);
+			txtDisplay->Text = System::Convert::ToString(result);
+
 		}
 };
 }
