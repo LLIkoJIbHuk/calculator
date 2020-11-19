@@ -38,10 +38,12 @@ namespace calculator {
 	protected:
 
 	private: System::Windows::Forms::TextBox^ txtDisplay;
+	private: System::Windows::Forms::Button^ btnClear;
+	private: System::Windows::Forms::Button^ btnClearEntry;
 	protected:
 
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
+
+
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::Button^ btnDigit7;
 	private: System::Windows::Forms::Button^ btnDigit8;
@@ -86,8 +88,8 @@ namespace calculator {
 		{
 			this->btnSpace = (gcnew System::Windows::Forms::Button());
 			this->txtDisplay = (gcnew System::Windows::Forms::TextBox());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->btnClear = (gcnew System::Windows::Forms::Button());
+			this->btnClearEntry = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->btnDigit7 = (gcnew System::Windows::Forms::Button());
 			this->btnDigit8 = (gcnew System::Windows::Forms::Button());
@@ -130,27 +132,29 @@ namespace calculator {
 			this->txtDisplay->Text = L"0";
 			this->txtDisplay->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
 			// 
-			// button2
+			// btnClear
 			// 
-			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnClear->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button2->Location = System::Drawing::Point(98, 83);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(80, 80);
-			this->button2->TabIndex = 0;
-			this->button2->Text = L"С";
-			this->button2->UseVisualStyleBackColor = true;
+			this->btnClear->Location = System::Drawing::Point(98, 83);
+			this->btnClear->Name = L"btnClear";
+			this->btnClear->Size = System::Drawing::Size(80, 80);
+			this->btnClear->TabIndex = 0;
+			this->btnClear->Text = L"С";
+			this->btnClear->UseVisualStyleBackColor = true;
+			this->btnClear->Click += gcnew System::EventHandler(this, &MainForm::btnClear_Click);
 			// 
-			// button3
+			// btnClearEntry
 			// 
-			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnClearEntry->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button3->Location = System::Drawing::Point(184, 83);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(80, 80);
-			this->button3->TabIndex = 0;
-			this->button3->Text = L"СЕ";
-			this->button3->UseVisualStyleBackColor = true;
+			this->btnClearEntry->Location = System::Drawing::Point(184, 83);
+			this->btnClearEntry->Name = L"btnClearEntry";
+			this->btnClearEntry->Size = System::Drawing::Size(80, 80);
+			this->btnClearEntry->TabIndex = 0;
+			this->btnClearEntry->Text = L"СЕ";
+			this->btnClearEntry->UseVisualStyleBackColor = true;
+			this->btnClearEntry->Click += gcnew System::EventHandler(this, &MainForm::btnClearEntry_Click);
 			// 
 			// button4
 			// 
@@ -370,12 +374,12 @@ namespace calculator {
 			this->Controls->Add(this->btnDigit3);
 			this->Controls->Add(this->btnDigit6);
 			this->Controls->Add(this->btnDigit9);
-			this->Controls->Add(this->button3);
+			this->Controls->Add(this->btnClearEntry);
 			this->Controls->Add(this->btnDecimal);
 			this->Controls->Add(this->btnDigit2);
 			this->Controls->Add(this->btnDigit5);
 			this->Controls->Add(this->btnDigit8);
-			this->Controls->Add(this->button2);
+			this->Controls->Add(this->btnClear);
 			this->Controls->Add(this->button17);
 			this->Controls->Add(this->btnDigit1);
 			this->Controls->Add(this->btnDigit4);
@@ -443,6 +447,16 @@ namespace calculator {
 				txtDisplay->Text = System::Convert::ToString(result);
 			}
 
+		}
+
+		//действие при нажатии на кнопку Clear
+		private: System::Void btnClear_Click(System::Object^ sender, System::EventArgs^ e) {
+			txtDisplay->Text = "0";
+		}
+
+		//действие при нажатии на кнопку ClearEntry
+		private: System::Void btnClearEntry_Click(System::Object^ sender, System::EventArgs^ e) {
+			txtDisplay->Text = "0";
 		}
 };
 }
