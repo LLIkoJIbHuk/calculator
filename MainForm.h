@@ -120,6 +120,7 @@ namespace calculator {
 			this->btnSpace->TabIndex = 0;
 			this->btnSpace->Text = L"";
 			this->btnSpace->UseVisualStyleBackColor = true;
+			this->btnSpace->Click += gcnew System::EventHandler(this, &MainForm::btnSpace_Click);
 			// 
 			// txtDisplay
 			// 
@@ -469,5 +470,18 @@ namespace calculator {
 				txtDisplay->Text = "-" + txtDisplay->Text;
 			}
 		}
+
+		//действие при нажатии на кнопку Backspace
+		private: System::Void btnSpace_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+		//стирание по 1 символу
+		if (txtDisplay->Text->Length > 0) {
+			txtDisplay->Text = txtDisplay->Text->Remove(txtDisplay->Text->Length - 1, 1);
+		}
+		//оставить 0, если нечего стирать
+		if (txtDisplay->Text == "") {
+			txtDisplay->Text = "0";
+		}
+	}
 };
 }
