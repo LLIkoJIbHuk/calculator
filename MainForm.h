@@ -378,7 +378,6 @@ namespace calculator {
 			this->btnSquaring->TabIndex = 2;
 			this->btnSquaring->Text = L"х²";
 			this->btnSquaring->UseVisualStyleBackColor = true;
-			this->btnSquaring->Click += gcnew System::EventHandler(this, &MainForm::btnSquaring_Click);
 			// 
 			// btnSquareRoot
 			// 
@@ -522,24 +521,15 @@ namespace calculator {
 		//действие при нажатии на кнопку Backspace
 		private: System::Void btnSpace_Click(System::Object^ sender, System::EventArgs^ e) {
 		
-			//стирание по 1 символу
-			if (txtDisplay->Text->Length > 0) {
-				txtDisplay->Text = txtDisplay->Text->Remove(txtDisplay->Text->Length - 1, 1);
-			}
-			//оставить 0, если нечего стирать
-			if (txtDisplay->Text == "") {
-				txtDisplay->Text = "0";
-			}
-
+		//стирание по 1 символу
+		if (txtDisplay->Text->Length > 0) {
+			txtDisplay->Text = txtDisplay->Text->Remove(txtDisplay->Text->Length - 1, 1);
 		}
-
-		//возведение в квадрат
-		private: System::Void btnSquaring_Click(System::Object^ sender, System::EventArgs^ e) {
-
-			firstDigit = Double::Parse(txtDisplay->Text);
-
-			result = firstDigit * firstDigit;
-			txtDisplay->Text = System::Convert::ToString(result);
+		//оставить 0, если нечего стирать
+		if (txtDisplay->Text == "") {
+			txtDisplay->Text = "0";
 		}
+	}
+
 };
 }
