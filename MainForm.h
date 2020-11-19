@@ -73,6 +73,10 @@ namespace calculator {
 
 
 	private: System::Windows::Forms::Button^ button20;
+	private: System::Windows::Forms::Button^ btnSquaring;
+
+	private: System::Windows::Forms::Button^ btnSquareRoot;
+
 
 	private:
 		/// <summary>
@@ -108,6 +112,8 @@ namespace calculator {
 			this->btnDecimal = (gcnew System::Windows::Forms::Button());
 			this->btnEquals = (gcnew System::Windows::Forms::Button());
 			this->button20 = (gcnew System::Windows::Forms::Button());
+			this->btnSquaring = (gcnew System::Windows::Forms::Button());
+			this->btnSquareRoot = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// btnSpace
@@ -129,7 +135,7 @@ namespace calculator {
 			this->txtDisplay->Location = System::Drawing::Point(12, 12);
 			this->txtDisplay->Multiline = true;
 			this->txtDisplay->Name = L"txtDisplay";
-			this->txtDisplay->Size = System::Drawing::Size(338, 65);
+			this->txtDisplay->Size = System::Drawing::Size(424, 65);
 			this->txtDisplay->TabIndex = 1;
 			this->txtDisplay->Text = L"0";
 			this->txtDisplay->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
@@ -362,11 +368,35 @@ namespace calculator {
 			this->button20->UseVisualStyleBackColor = true;
 			this->button20->Click += gcnew System::EventHandler(this, &MainForm::EnterOperator);
 			// 
+			// btnSquaring
+			// 
+			this->btnSquaring->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->btnSquaring->Location = System::Drawing::Point(356, 83);
+			this->btnSquaring->Name = L"btnSquaring";
+			this->btnSquaring->Size = System::Drawing::Size(80, 80);
+			this->btnSquaring->TabIndex = 2;
+			this->btnSquaring->Text = L"х²";
+			this->btnSquaring->UseVisualStyleBackColor = true;
+			// 
+			// btnSquareRoot
+			// 
+			this->btnSquareRoot->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->btnSquareRoot->Location = System::Drawing::Point(356, 169);
+			this->btnSquareRoot->Name = L"btnSquareRoot";
+			this->btnSquareRoot->Size = System::Drawing::Size(80, 80);
+			this->btnSquareRoot->TabIndex = 3;
+			this->btnSquareRoot->Text = L"√";
+			this->btnSquareRoot->UseVisualStyleBackColor = true;
+			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(364, 514);
+			this->ClientSize = System::Drawing::Size(446, 514);
+			this->Controls->Add(this->btnSquareRoot);
+			this->Controls->Add(this->btnSquaring);
 			this->Controls->Add(this->txtDisplay);
 			this->Controls->Add(this->button20);
 			this->Controls->Add(this->button16);
@@ -390,13 +420,28 @@ namespace calculator {
 			this->Controls->Add(this->btnSpace);
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";
+			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 
-		double firstDegit, secondDigit, result;
+		/*
+			ФОРМА
+		*/
+
+		//смена иконки при загрузке формы
+		private: System::Void MainForm_Load(System::Object^ sender, System::EventArgs^ e) {
+			Drawing::Icon^ myIcon = gcnew Drawing::Icon("calc.ico");
+			this->Icon = myIcon;
+		}
+
+		/*
+			ВЫЧИСЛЕНИЯ
+		*/
+
+		double firstDigit, secondDigit, result;
 		String^ operators;
 		
 		//ввод числа с использованием кнопки
@@ -417,7 +462,7 @@ namespace calculator {
 			
 			Button^ NumbersOperators = safe_cast<Button^>(sender);
 
-			firstDegit = Double::Parse(txtDisplay->Text);
+			firstDigit = Double::Parse(txtDisplay->Text);
 			txtDisplay->Text = "";
 			operators = NumbersOperators->Text;
 		}
@@ -437,16 +482,16 @@ namespace calculator {
 			secondDigit = Double::Parse(txtDisplay->Text);
 
 			if (operators == "+") {
-				result = firstDegit + secondDigit;
+				result = firstDigit + secondDigit;
 				txtDisplay->Text = System::Convert::ToString(result);
 			} else if (operators == "-") {
-				result = firstDegit - secondDigit;
+				result = firstDigit - secondDigit;
 				txtDisplay->Text = System::Convert::ToString(result);
 			} else if (operators == "/") {
-				result = firstDegit / secondDigit;
+				result = firstDigit / secondDigit;
 				txtDisplay->Text = System::Convert::ToString(result);
 			} else if (operators == "*") {
-				result = firstDegit * secondDigit;
+				result = firstDigit * secondDigit;
 				txtDisplay->Text = System::Convert::ToString(result);
 			}
 
@@ -464,11 +509,13 @@ namespace calculator {
 
 		//действие при нажатии на кнопку смены знака
 		private: System::Void btnPlusMinus_Click(System::Object^ sender, System::EventArgs^ e) {
+
 			if (txtDisplay->Text->Contains("-")) {
 				txtDisplay->Text = txtDisplay->Text->Remove(0, 1);
 			} else {
 				txtDisplay->Text = "-" + txtDisplay->Text;
 			}
+
 		}
 
 		//действие при нажатии на кнопку Backspace
@@ -483,5 +530,6 @@ namespace calculator {
 			txtDisplay->Text = "0";
 		}
 	}
+
 };
 }
