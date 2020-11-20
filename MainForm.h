@@ -376,7 +376,7 @@ namespace calculator {
 			this->btnDecimal->Name = L"btnDecimal";
 			this->btnDecimal->Size = System::Drawing::Size(80, 80);
 			this->btnDecimal->TabIndex = 0;
-			this->btnDecimal->Text = L".";
+			this->btnDecimal->Text = L",";
 			this->btnDecimal->UseVisualStyleBackColor = false;
 			this->btnDecimal->Click += gcnew System::EventHandler(this, &MainForm::btnDecimal_Click);
 			// 
@@ -544,10 +544,10 @@ namespace calculator {
 			ФОРМА
 		*/
 
-		//цифры и операторы, знак равно
+		//разрешен ввод только цифр и запятой
 		private: System::Void txtDisplay_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 			char number = e->KeyChar;
-			if ((e->KeyChar <= 42 || e->KeyChar >= 57) && number != 61){
+			if ((e->KeyChar <= 47 || e->KeyChar >= 58) && number != 44){
 				e->Handled = true;
 			}
 		}
