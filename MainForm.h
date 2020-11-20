@@ -135,7 +135,7 @@ namespace calculator {
 			// 
 			// btnSpace
 			// 
-			this->btnSpace->BackColor = System::Drawing::SystemColors::Info;
+			this->btnSpace->BackColor = System::Drawing::SystemColors::ControlDarkDark;
 			this->btnSpace->Font = (gcnew System::Drawing::Font(L"Wingdings", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(2)));
 			this->btnSpace->Location = System::Drawing::Point(12, 112);
@@ -157,10 +157,11 @@ namespace calculator {
 			this->txtDisplay->TabIndex = 1;
 			this->txtDisplay->Text = L"0";
 			this->txtDisplay->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
+			this->txtDisplay->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainForm::txtDisplay_KeyPress);
 			// 
 			// btnClear
 			// 
-			this->btnClear->BackColor = System::Drawing::SystemColors::Info;
+			this->btnClear->BackColor = System::Drawing::SystemColors::ControlDarkDark;
 			this->btnClear->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->btnClear->Location = System::Drawing::Point(98, 112);
@@ -173,7 +174,7 @@ namespace calculator {
 			// 
 			// btnClearEntry
 			// 
-			this->btnClearEntry->BackColor = System::Drawing::SystemColors::Info;
+			this->btnClearEntry->BackColor = System::Drawing::SystemColors::ControlDarkDark;
 			this->btnClearEntry->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->btnClearEntry->Location = System::Drawing::Point(184, 112);
@@ -543,6 +544,14 @@ namespace calculator {
 			ФОРМА
 		*/
 
+		//цифры и операторы, знак равно
+		private: System::Void txtDisplay_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+			char number = e->KeyChar;
+			if ((e->KeyChar <= 42 || e->KeyChar >= 57) && number != 61){
+				e->Handled = true;
+			}
+		}
+
 		//смена иконки при загрузке формы
 		private: System::Void MainForm_Load(System::Object^ sender, System::EventArgs^ e) {
 			Drawing::Icon^ myIcon = gcnew Drawing::Icon("calc.ico");
@@ -564,7 +573,7 @@ namespace calculator {
 				"Учебная группа ИНБс-2301 \n"
 				"Версия 1.0\n"
 				"Разработчик - Юрлов Константин \n"
-				"\n\t\t\t2020 год\n");
+				"\n\t\t2020 год\n");
 		}
 
 		/*
@@ -600,8 +609,8 @@ namespace calculator {
 		//действие при нажатии на кнопку точка
 		private: System::Void btnDecimal_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			if (!txtDisplay->Text->Contains (".")) {
-				txtDisplay->Text = txtDisplay->Text + ".";
+			if (!txtDisplay->Text->Contains (",")) {
+				txtDisplay->Text = txtDisplay->Text + ",";
 			}
 
 		}
