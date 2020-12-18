@@ -78,9 +78,11 @@ namespace calculator {
 	private: System::Windows::Forms::Button^ btnSquaring;
 
 	private: System::Windows::Forms::Button^ btnSquareRoot;
-	private: System::Windows::Forms::Button^ btnMemorySave;
-	private: System::Windows::Forms::Button^ btnMemoryRead;
-	private: System::Windows::Forms::Button^ btnMemoryClear;
+	private: System::Windows::Forms::Button^ btnOneDivideByX;
+	private: System::Windows::Forms::Button^ btnPercentage;
+
+
+
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ заданиеToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ оПрограммеToolStripMenuItem;
@@ -124,9 +126,8 @@ namespace calculator {
 			this->button20 = (gcnew System::Windows::Forms::Button());
 			this->btnSquaring = (gcnew System::Windows::Forms::Button());
 			this->btnSquareRoot = (gcnew System::Windows::Forms::Button());
-			this->btnMemorySave = (gcnew System::Windows::Forms::Button());
-			this->btnMemoryRead = (gcnew System::Windows::Forms::Button());
-			this->btnMemoryClear = (gcnew System::Windows::Forms::Button());
+			this->btnOneDivideByX = (gcnew System::Windows::Forms::Button());
+			this->btnPercentage = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->заданиеToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->оПрограммеToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -387,7 +388,7 @@ namespace calculator {
 				static_cast<System::Byte>(204)));
 			this->btnEquals->Location = System::Drawing::Point(270, 456);
 			this->btnEquals->Name = L"btnEquals";
-			this->btnEquals->Size = System::Drawing::Size(80, 80);
+			this->btnEquals->Size = System::Drawing::Size(166, 80);
 			this->btnEquals->TabIndex = 0;
 			this->btnEquals->Text = L"=";
 			this->btnEquals->UseVisualStyleBackColor = false;
@@ -432,41 +433,29 @@ namespace calculator {
 			this->btnSquareRoot->UseVisualStyleBackColor = false;
 			this->btnSquareRoot->Click += gcnew System::EventHandler(this, &MainForm::btnSquareRoot_Click);
 			// 
-			// btnMemorySave
+			// btnOneDivideByX
 			// 
-			this->btnMemorySave->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			this->btnMemorySave->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnOneDivideByX->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->btnOneDivideByX->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->btnMemorySave->Location = System::Drawing::Point(356, 284);
-			this->btnMemorySave->Name = L"btnMemorySave";
-			this->btnMemorySave->Size = System::Drawing::Size(80, 80);
-			this->btnMemorySave->TabIndex = 4;
-			this->btnMemorySave->Text = L"MS";
-			this->btnMemorySave->UseVisualStyleBackColor = false;
+			this->btnOneDivideByX->Location = System::Drawing::Point(356, 284);
+			this->btnOneDivideByX->Name = L"btnOneDivideByX";
+			this->btnOneDivideByX->Size = System::Drawing::Size(80, 80);
+			this->btnOneDivideByX->TabIndex = 4;
+			this->btnOneDivideByX->Text = L"1/X";
+			this->btnOneDivideByX->UseVisualStyleBackColor = false;
 			// 
-			// btnMemoryRead
+			// btnPercentage
 			// 
-			this->btnMemoryRead->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			this->btnMemoryRead->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnPercentage->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->btnPercentage->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->btnMemoryRead->Location = System::Drawing::Point(356, 370);
-			this->btnMemoryRead->Name = L"btnMemoryRead";
-			this->btnMemoryRead->Size = System::Drawing::Size(80, 80);
-			this->btnMemoryRead->TabIndex = 5;
-			this->btnMemoryRead->Text = L"MR";
-			this->btnMemoryRead->UseVisualStyleBackColor = false;
-			// 
-			// btnMemoryClear
-			// 
-			this->btnMemoryClear->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			this->btnMemoryClear->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->btnMemoryClear->Location = System::Drawing::Point(356, 456);
-			this->btnMemoryClear->Name = L"btnMemoryClear";
-			this->btnMemoryClear->Size = System::Drawing::Size(80, 80);
-			this->btnMemoryClear->TabIndex = 6;
-			this->btnMemoryClear->Text = L"MC";
-			this->btnMemoryClear->UseVisualStyleBackColor = false;
+			this->btnPercentage->Location = System::Drawing::Point(356, 370);
+			this->btnPercentage->Name = L"btnPercentage";
+			this->btnPercentage->Size = System::Drawing::Size(80, 80);
+			this->btnPercentage->TabIndex = 5;
+			this->btnPercentage->Text = L"%";
+			this->btnPercentage->UseVisualStyleBackColor = false;
 			// 
 			// menuStrip1
 			// 
@@ -501,9 +490,8 @@ namespace calculator {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::Control;
 			this->ClientSize = System::Drawing::Size(446, 541);
-			this->Controls->Add(this->btnMemoryClear);
-			this->Controls->Add(this->btnMemoryRead);
-			this->Controls->Add(this->btnMemorySave);
+			this->Controls->Add(this->btnPercentage);
+			this->Controls->Add(this->btnOneDivideByX);
 			this->Controls->Add(this->btnSquareRoot);
 			this->Controls->Add(this->btnSquaring);
 			this->Controls->Add(this->txtDisplay);
@@ -544,12 +532,15 @@ namespace calculator {
 			ФОРМА
 		*/
 
-		//разрешен ввод только цифр и запятой
+		//разрешен ввод цифр, запятой и Backspace
 		private: System::Void txtDisplay_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+			
 			char number = e->KeyChar;
-			if ((e->KeyChar <= 47 || e->KeyChar >= 58) && number != 44){
+
+			if ((e->KeyChar <= 47 || e->KeyChar >= 58) && number != 44 && number != 8){
 				e->Handled = true;
 			}
+
 		}
 
 		//смена иконки при загрузке формы
@@ -560,8 +551,8 @@ namespace calculator {
 
 		//вывод сообщения при нажатии на кнопку Задание
 		private: System::Void заданиеToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-			MessageBox::Show("Вариант 6\n\n"
-				"Сложение, вычитание, умножение, деление, возведение в степень, извлечение квадратного корня, функции памяти (занести в память, вывести содержимое памяти, очистить память)"
+			MessageBox::Show("Вариант 17\n\n"
+				"Сложение, вычитание, умножение, деление, возведение в степень, извлечение квадратного корня, вычисление 1/x, процент."
 			);
 		}
 
@@ -690,6 +681,5 @@ namespace calculator {
 			txtDisplay->Text = System::Convert::ToString(result);
 
 		}
-
 };
 }
