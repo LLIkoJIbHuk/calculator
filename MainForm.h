@@ -695,9 +695,13 @@ namespace calculator {
 
 			firstDigit = Double::Parse(txtDisplay->Text);
 
-			result = 1 / firstDigit;
-
-			txtDisplay->Text = System::Convert::ToString(result);
+			if (firstDigit == 0) {
+				txtDisplay->Text = "0";
+			} else {
+				result = 1 / firstDigit;
+				txtDisplay->Text = System::Convert::ToString(result);
+			}
+			
 		}
 
 		// %
