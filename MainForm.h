@@ -622,8 +622,12 @@ namespace calculator {
 				result = firstDigit - secondDigit;
 				txtDisplay->Text = System::Convert::ToString(result);
 			} else if (operators == "/") {
-				result = firstDigit / secondDigit;
-				txtDisplay->Text = System::Convert::ToString(result);
+				if (txtDisplay->Text == "0" || txtDisplay->Text == ""){
+					firstDigit = 0;
+				} else {
+					result = firstDigit / secondDigit;
+					txtDisplay->Text = System::Convert::ToString(result);
+				}
 			} else if (operators == "*") {
 				result = firstDigit * secondDigit;
 				txtDisplay->Text = System::Convert::ToString(result);
