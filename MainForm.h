@@ -103,6 +103,7 @@ namespace calculator {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			this->btnSpace = (gcnew System::Windows::Forms::Button());
 			this->txtDisplay = (gcnew System::Windows::Forms::TextBox());
 			this->btnClear = (gcnew System::Windows::Forms::Button());
@@ -444,6 +445,7 @@ namespace calculator {
 			this->btnOneDivideByX->TabIndex = 4;
 			this->btnOneDivideByX->Text = L"1/X";
 			this->btnOneDivideByX->UseVisualStyleBackColor = false;
+			this->btnOneDivideByX->Click += gcnew System::EventHandler(this, &MainForm::btnOneDivideByX_Click);
 			// 
 			// btnPercentage
 			// 
@@ -466,21 +468,21 @@ namespace calculator {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(446, 28);
+			this->menuStrip1->Size = System::Drawing::Size(446, 30);
 			this->menuStrip1->TabIndex = 7;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
 			// заданиеToolStripMenuItem
 			// 
 			this->заданиеToolStripMenuItem->Name = L"заданиеToolStripMenuItem";
-			this->заданиеToolStripMenuItem->Size = System::Drawing::Size(81, 24);
+			this->заданиеToolStripMenuItem->Size = System::Drawing::Size(81, 26);
 			this->заданиеToolStripMenuItem->Text = L"Задание";
 			this->заданиеToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::заданиеToolStripMenuItem_Click);
 			// 
 			// оПрограммеToolStripMenuItem
 			// 
 			this->оПрограммеToolStripMenuItem->Name = L"оПрограммеToolStripMenuItem";
-			this->оПрограммеToolStripMenuItem->Size = System::Drawing::Size(118, 24);
+			this->оПрограммеToolStripMenuItem->Size = System::Drawing::Size(118, 26);
 			this->оПрограммеToolStripMenuItem->Text = L"О программе";
 			this->оПрограммеToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::оПрограммеToolStripMenuItem_Click);
 			// 
@@ -516,6 +518,7 @@ namespace calculator {
 			this->Controls->Add(this->btnDigit7);
 			this->Controls->Add(this->btnSpace);
 			this->Controls->Add(this->menuStrip1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"MainForm";
 			this->Text = L"Калькулятор";
@@ -680,6 +683,15 @@ namespace calculator {
 			result = sqrt(firstDigit);
 			txtDisplay->Text = System::Convert::ToString(result);
 
+		}
+
+		//1/х
+		private: System::Void btnOneDivideByX_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			firstDigit = Double::Parse(txtDisplay->Text);
+
+			result = 1 / firstDigit;
+			txtDisplay->Text = System::Convert::ToString(result);
 		}
 };
 }
