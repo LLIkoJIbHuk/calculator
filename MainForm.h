@@ -458,6 +458,7 @@ namespace calculator {
 			this->btnPercentage->TabIndex = 5;
 			this->btnPercentage->Text = L"%";
 			this->btnPercentage->UseVisualStyleBackColor = false;
+			this->btnPercentage->Click += gcnew System::EventHandler(this, &MainForm::btnPercentage_Click);
 			// 
 			// menuStrip1
 			// 
@@ -468,21 +469,21 @@ namespace calculator {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(446, 30);
+			this->menuStrip1->Size = System::Drawing::Size(446, 28);
 			this->menuStrip1->TabIndex = 7;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
 			// заданиеToolStripMenuItem
 			// 
 			this->заданиеToolStripMenuItem->Name = L"заданиеToolStripMenuItem";
-			this->заданиеToolStripMenuItem->Size = System::Drawing::Size(81, 26);
+			this->заданиеToolStripMenuItem->Size = System::Drawing::Size(81, 24);
 			this->заданиеToolStripMenuItem->Text = L"Задание";
 			this->заданиеToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::заданиеToolStripMenuItem_Click);
 			// 
 			// оПрограммеToolStripMenuItem
 			// 
 			this->оПрограммеToolStripMenuItem->Name = L"оПрограммеToolStripMenuItem";
-			this->оПрограммеToolStripMenuItem->Size = System::Drawing::Size(118, 26);
+			this->оПрограммеToolStripMenuItem->Size = System::Drawing::Size(118, 24);
 			this->оПрограммеToolStripMenuItem->Text = L"О программе";
 			this->оПрограммеToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::оПрограммеToolStripMenuItem_Click);
 			// 
@@ -685,12 +686,22 @@ namespace calculator {
 
 		}
 
-		//1/х
+		// 1/х
 		private: System::Void btnOneDivideByX_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			firstDigit = Double::Parse(txtDisplay->Text);
 
 			result = 1 / firstDigit;
+
+			txtDisplay->Text = System::Convert::ToString(result);
+		}
+
+		// %
+		private: System::Void btnPercentage_Click(System::Object^ sender, System::EventArgs^ e) {
+			firstDigit = Double::Parse(txtDisplay->Text);
+
+			result = firstDigit / 100;
+
 			txtDisplay->Text = System::Convert::ToString(result);
 		}
 };
