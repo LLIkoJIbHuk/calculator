@@ -40,7 +40,7 @@ namespace calculator {
 	protected:
 
 	private: System::Windows::Forms::TextBox^ txtDisplay;
-	private: System::Windows::Forms::Button^ btnClear;
+
 	private: System::Windows::Forms::Button^ btnClearEntry;
 	private: System::Windows::Forms::Button^ btnPlusMinus;
 	protected:
@@ -86,6 +86,7 @@ namespace calculator {
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ заданиеToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ оПрограммеToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ выходToolStripMenuItem;
 
 
 
@@ -106,7 +107,6 @@ namespace calculator {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			this->btnSpace = (gcnew System::Windows::Forms::Button());
 			this->txtDisplay = (gcnew System::Windows::Forms::TextBox());
-			this->btnClear = (gcnew System::Windows::Forms::Button());
 			this->btnClearEntry = (gcnew System::Windows::Forms::Button());
 			this->btnPlusMinus = (gcnew System::Windows::Forms::Button());
 			this->btnDigit7 = (gcnew System::Windows::Forms::Button());
@@ -132,6 +132,7 @@ namespace calculator {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->заданиеToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->оПрограммеToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->выходToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -142,7 +143,7 @@ namespace calculator {
 				static_cast<System::Byte>(2)));
 			this->btnSpace->Location = System::Drawing::Point(12, 112);
 			this->btnSpace->Name = L"btnSpace";
-			this->btnSpace->Size = System::Drawing::Size(80, 80);
+			this->btnSpace->Size = System::Drawing::Size(166, 80);
 			this->btnSpace->TabIndex = 0;
 			this->btnSpace->Text = L"";
 			this->btnSpace->UseVisualStyleBackColor = false;
@@ -160,19 +161,6 @@ namespace calculator {
 			this->txtDisplay->Text = L"0";
 			this->txtDisplay->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
 			this->txtDisplay->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainForm::txtDisplay_KeyPress);
-			// 
-			// btnClear
-			// 
-			this->btnClear->BackColor = System::Drawing::SystemColors::ControlDarkDark;
-			this->btnClear->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->btnClear->Location = System::Drawing::Point(98, 112);
-			this->btnClear->Name = L"btnClear";
-			this->btnClear->Size = System::Drawing::Size(80, 80);
-			this->btnClear->TabIndex = 0;
-			this->btnClear->Text = L"С";
-			this->btnClear->UseVisualStyleBackColor = false;
-			this->btnClear->Click += gcnew System::EventHandler(this, &MainForm::btnClear_Click);
 			// 
 			// btnClearEntry
 			// 
@@ -463,9 +451,9 @@ namespace calculator {
 			// menuStrip1
 			// 
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
 				this->заданиеToolStripMenuItem,
-					this->оПрограммеToolStripMenuItem
+					this->оПрограммеToolStripMenuItem, this->выходToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -486,6 +474,13 @@ namespace calculator {
 			this->оПрограммеToolStripMenuItem->Size = System::Drawing::Size(118, 24);
 			this->оПрограммеToolStripMenuItem->Text = L"О программе";
 			this->оПрограммеToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::оПрограммеToolStripMenuItem_Click);
+			// 
+			// выходToolStripMenuItem
+			// 
+			this->выходToolStripMenuItem->Name = L"выходToolStripMenuItem";
+			this->выходToolStripMenuItem->Size = System::Drawing::Size(67, 24);
+			this->выходToolStripMenuItem->Text = L"Выход";
+			this->выходToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::выходToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 
@@ -512,7 +507,6 @@ namespace calculator {
 			this->Controls->Add(this->btnDigit2);
 			this->Controls->Add(this->btnDigit5);
 			this->Controls->Add(this->btnDigit8);
-			this->Controls->Add(this->btnClear);
 			this->Controls->Add(this->button17);
 			this->Controls->Add(this->btnDigit1);
 			this->Controls->Add(this->btnDigit4);
@@ -564,11 +558,15 @@ namespace calculator {
 		private: System::Void оПрограммеToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 			MessageBox::Show("Программа 'Калькулятор'\n"
 				"Дисциплина: Языки программирования\n"
-				"Вариант 6\n"
+				"Вариант 17\n"
 				"Учебная группа ИНБс-2301 \n"
 				"Версия 1.0\n"
 				"Разработчик - Юрлов Константин \n"
 				"\n\t\t2020 год\n");
+		}
+
+		private: System::Void выходToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+			Application::Exit();
 		}
 
 		/*
@@ -622,8 +620,9 @@ namespace calculator {
 				result = firstDigit - secondDigit;
 				txtDisplay->Text = System::Convert::ToString(result);
 			} else if (operators == "/") {
-				if (txtDisplay->Text == "0" || txtDisplay->Text == ""){
+				if (txtDisplay->Text == "0" || txtDisplay->Text == "") {
 					firstDigit = 0;
+					MessageBox::Show("Деление на ноль невозможно");
 				} else {
 					result = firstDigit / secondDigit;
 					txtDisplay->Text = System::Convert::ToString(result);
@@ -633,11 +632,6 @@ namespace calculator {
 				txtDisplay->Text = System::Convert::ToString(result);
 			}
 
-		}
-
-		//действие при нажатии на кнопку Clear
-		private: System::Void btnClear_Click(System::Object^ sender, System::EventArgs^ e) {
-			txtDisplay->Text = "0";
 		}
 
 		//действие при нажатии на кнопку ClearEntry
@@ -697,6 +691,7 @@ namespace calculator {
 
 			if (firstDigit == 0) {
 				txtDisplay->Text = "0";
+				MessageBox::Show("Деление на ноль невозможно");
 			} else {
 				result = 1 / firstDigit;
 				txtDisplay->Text = System::Convert::ToString(result);
@@ -712,5 +707,6 @@ namespace calculator {
 
 			txtDisplay->Text = System::Convert::ToString(result);
 		}
+
 };
 }
